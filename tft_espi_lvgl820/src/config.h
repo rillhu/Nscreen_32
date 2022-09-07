@@ -7,11 +7,11 @@
 #define TOUCHPAD  1//whether the UI support touch pad
 // #define _TP_DEBUG_ //TP debug
 
-
+#define TOUCH_CALIBRATION 0
 
 
 //----------------------------tp configaction
-#if TOUCHPAD 
+//#if TOUCHPAD 
 
 #define I2C_SPEED 400000
 #define TP_SCL 22
@@ -19,7 +19,7 @@
 #define TP_INT 5
 #define TP_RST 23
 
-#endif
+// #endif
 //----------------------------end tp configaction
 
 
