@@ -2,7 +2,7 @@
 #define _DEBUG_           //debug switch
 #define DEV_TYPE "Nscreen_32"
 
-#define ROTATION 1       //set ui rotation
+#define ROTATION 1       //set ui rotation 0:vertical, 1:landscape
 
 #define TOUCHPAD  1//whether the UI support touch pad
 // #define _TP_DEBUG_ //TP debug

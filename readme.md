@@ -53,7 +53,7 @@ Current libraries version:
 
 ```
 Dependency Graph
-|-- lv_arduino @ 3.0.1
+|-- lv_arduino @ 3.0.1 //lvgl 7.8.0 core
 |-- TFT_eSPI @ 2.4.61
 |   |-- SPIFFS @ 2.0.0
 |   |   |-- FS @ 2.0.0
@@ -103,6 +103,13 @@ Dependency Graph
 |   |-- SPI @ 2.0.0
 Building in release mode
 ```
+
+
+
+- [ ] Update the vertical and landscape support (ROTATION), code need to be clean
+- [ ] Enlarge the lvgl dispbuf by dynamic allocate RAM, benchmark test shows FPS could be 22FPS now
+
+
 
 
 

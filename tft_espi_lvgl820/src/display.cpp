@@ -39,6 +39,7 @@ TFT_D7   14
 #include "gt911.h"
 
 #include "esp_freertos_hooks.h"
+#include "esp_heap_caps.h"
 
 #include "demos/lv_demos.h"
 #include "demos/widgets/lv_demo_widgets.h"
@@ -52,7 +53,8 @@ static const uint16_t screenWidth = 480;
 static const uint16_t screenHeight = 320;
 
 static lv_disp_draw_buf_t draw_buf;
-static lv_color_t buf[screenWidth * 10];
+//lv_color_t buf[screenHeight * 63];
+//lv_color_t buf2[screenHeight * 100];
 
 TFT_eSPI tft = TFT_eSPI(screenWidth, screenHeight); /* TFT instance */
 
@@ -84,11 +86,17 @@ void my_touchpad_read(lv_indev_drv_t *indev_driver, lv_indev_data_t *data)
         //if(data->state == LV_INDEV_STATE_PR) touchpad_get_xy(&last_x, &last_y);
         if (data->state == LV_INDEV_STATE_PR)
         {
-            //data->point.x = tp.get_xy.x;
-            //data->point.y = tp.get_xy.y;
-            /* ROTATION==1 */
-            data->point.x = tp.get_xy.y;
-            data->point.y = 319 - tp.get_xy.x;
+            if (ROTATION == 0)
+            {
+                data->point.x = tp.get_xy.x;
+                data->point.y = tp.get_xy.y;
+            }
+            else
+            {
+                /* ROTATION==1 */
+                data->point.x = tp.get_xy.y;
+                data->point.y = 319 - tp.get_xy.x;
+            }
 #ifdef _DEBUG_
             Serial.printf("[INFO][TP] X is %d \n", tp.get_xy.x);
             Serial.printf("[INFO][TP] Y is %d \n", tp.get_xy.y);
@@ -146,7 +154,7 @@ void lv_timer_handler_task(void *pvParameters)
     }
 }
 
-void displaySetup()
+void ICACHE_FLASH_ATTR displaySetup()
 {
     lv_init();
     tft.begin(); /* TFT init */
@@ -161,14 +169,24 @@ void displaySetup()
     uint16_t calData[5] = {275, 3620, 264, 3532, 1};
     tft.setTouch(calData);
 #endif
-    lv_disp_draw_buf_init(&draw_buf, buf, NULL, screenWidth * 10);
+    lv_color_t *buf = (lv_color_t *)heap_caps_malloc(screenHeight * 100, MALLOC_CAP_DMA);
+    lv_disp_draw_buf_init(&draw_buf, buf, NULL, screenHeight * 100);
 
     /*Initialize the display*/
     static lv_disp_drv_t disp_drv;
     lv_disp_drv_init(&disp_drv);
     /*Change the following line to your display resolution*/
-    disp_drv.hor_res = screenWidth;
-    disp_drv.ver_res = screenHeight;
+    if (ROTATION == 0)
+    {
+        disp_drv.hor_res = screenHeight;
+        disp_drv.ver_res = screenWidth;
+    }
+    else
+    {
+        disp_drv.hor_res = screenWidth;
+        disp_drv.ver_res = screenHeight;
+    }
+
     disp_drv.flush_cb = my_disp_flush;
     disp_drv.draw_buf = &draw_buf;
     lv_disp_drv_register(&disp_drv);
@@ -204,10 +222,10 @@ void displaySetup()
 
     // uncomment one of these demos
     lv_demo_widgets(); // OK
-    // lv_demo_benchmark(); // OK
-    // lv_demo_keypad_encoder(); // works, but I haven't an encoder
-    // lv_demo_music(); // OK
-    // lv_demo_stress(); // seems to be OK
+                       //    lv_demo_benchmark(); // OK
+                       // lv_demo_keypad_encoder(); // works, but I haven't an encoder
+                       // lv_demo_music(); // OK
+                       // lv_demo_stress(); // seems to be OK
 #endif
 
     /* This is copied from  https://gitee.com/rillhu/esp32-lvgl-dev.git DEMOS
