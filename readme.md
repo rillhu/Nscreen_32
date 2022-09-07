@@ -104,12 +104,12 @@ Dependency Graph
 Building in release mode
 ```
 
+**Updates and Todos:**
 
-
-- [ ] Update the vertical and landscape support (ROTATION), code need to be clean
-- [ ] Enlarge the lvgl dispbuf by dynamic allocate RAM, benchmark test shows FPS could be 22FPS now
-
-
+- [x] GT911 touch screen is supported.
+- [x] Refactor the code organization of display setting.
+- [x] Update the `vertical` and `landscape` support (ROTATION), code might need to be clean.
+- [x] Enlarge the `lvgl dispbuf` by dynamic allocate RAM, benchmark test shows FPS could be 22FPS now.
 
 
 
