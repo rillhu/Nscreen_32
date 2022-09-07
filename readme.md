@@ -106,14 +106,11 @@ Building in release mode
 
 
 
-### TODO
-
-- [x] Add GT911 support in new demos `tft_espi_lvgl820`
-
-
-
 ### Run results
 
-<img src="https://rillhudev.coding.net/p/blogres/d/blogres/git/raw/master/tft_espi_lvgl820-1.jpg" style="zoom:33%;" />
-<img src="https://rillhudev.coding.net/p/blogres/d/blogres/git/raw/master/tft_espi_lvgl820-2.jpg" style="zoom:33%;" />
-<img src="https://rillhudev.coding.net/p/blogres/d/blogres/git/raw/master/tft_espi_lvgl820-3.jpg" style="zoom:33%;" />
+<img src="https://raw.codehub.cn/p/blogres/d/blogres/git/raw/master/tft_espi_lvgl820-1.jpg?token=sm2nLXppoyGk2mCzUDkRBsdoP2Vx5aELIygB1cXET8" style="zoom:33%;" />
+
+<img src="https://raw.codehub.cn/p/blogres/d/blogres/git/raw/master/tft_espi_lvgl820-2.jpg?token=Sa5zp02nm8RIkoLieQt0SIMvkvQjBpj9SqQBLMIA9D" style="zoom:33%;" />
+
+<img src="https://raw.codehub.cn/p/blogres/d/blogres/git/raw/master/tft_espi_lvgl820-3.jpg?token=vroXEPbiw49iTXO4u60AF3ts4dwczfv4ll89HrECHE" style="zoom:33%;" />
+
