@@ -49,7 +49,10 @@ void ICACHE_FLASH_ATTR tp_service::readi2c(uint16_t addr, uint8_t *inputbuff, si
 #endif
   }
 
-  Wire.endTransmission(false); //send nack end
+  // Wire.endTransmission(false); //send nack end
+  //refer: https://github.com/adafruit/Adafruit_BMP3XX/issues/20
+  //refer: https://github.com/adafruit/Adafruit_BMP3XX/compare/2.1.0...2.1.1
+   Wire.endTransmission(true); //send ack end ???
 } //end readi2c()
 
 void ICACHE_FLASH_ATTR tp_service::setup()
